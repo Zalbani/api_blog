@@ -3,19 +3,17 @@
 namespace App\Entity;
 
 use App\Repository\ArticleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
+ * @ApiRessource()
  */
 class Article
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+    use RessourceId;
+    use Timestampable;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -32,9 +30,10 @@ class Article
      */
     private $author;
 
-    public function getId(): ?int
+    public function __construct()
     {
-        return $this->id;
+        $this->articles = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function getTitle(): ?string
