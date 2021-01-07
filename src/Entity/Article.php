@@ -43,25 +43,24 @@ class Article
      * @ORM\Column(type="string", length=255)
      * @Groups ({"article_read","user_details_read", "article_details_read"})
      */
-    private $title;
+    private string $title;
 
     /**
      * @ORM\Column(type="text")
      * @Groups ({"article_read","user_details_read","article_details_read"})
      */
-    private $content;
+    private string $content;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="articles")
      * @ORM\JoinColumn(nullable=false)
      * @Groups ({"article_details_read"})
      */
-    private $author;
+    private User $author;
 
     public function __construct()
     {
-        $this->articles = new ArrayCollection();
-        $this->createdAt = new \DateTimeImmutable();
+        $this->createdAt = new \DateTime();
     }
 
     public function getTitle(): ?string

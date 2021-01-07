@@ -44,6 +44,10 @@ $ bin/console doctrine:fixtures:load
 
 # run test
 $ bin/phpunit
+
+# Reset de la base de donnees
+# A NE SURTOUT PAS FAIRE EN PROD !
+$ bin/console d:d:d --force && bin/console d:d:c && bin/console d:m:m && bin/console d:f:l
 ```
 
 Some useful command if you want to create or update db scheme and then migrate them.
