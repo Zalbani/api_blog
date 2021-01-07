@@ -17,6 +17,9 @@ $ composer install
 
 # serve with at localhost:8000
 $ php -S 127.0.0.1:8000 -t public
+
+# if you have some trouble try :
+$ php bin/console cache:clear
 ```
 
 ## Development setup
