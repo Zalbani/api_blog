@@ -4,6 +4,7 @@
 namespace App\Tests\Func;
 
 
+use App\DataFixtures\AppFixtures;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Faker\Factory;
@@ -14,9 +15,15 @@ class UserTest extends AbstractEndPoint
 
     public function testGetUser():void
     {
-        $response = $this->gerResponseFromRequest(Request::METHOD_GET, 'api/users');
+        $response = $this->getResponseFromRequest(
+            Request::METHOD_GET,
+            '/api/users',
+            '',
+            [],
+            false
+        );
         $responseContent = $response->getContent();
-        $responseDecoded = json_decode($responseContent);
+        $responseDecoded = json_decode($responseContent, true);
 
         self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
         self::assertJson($responseContent);
@@ -24,10 +31,12 @@ class UserTest extends AbstractEndPoint
     }
     public function testPostUser():void
     {
-        $response = $this->gerResponseFromRequest(
+        $response = $this->getResponseFromRequest(
             Request::METHOD_POST,
-            'api/users',
-            $this->getPayload()
+            '/api/users',
+            $this->getPayload(),
+            [],
+            false
         );
         $responseContent = $response->getContent();
         $responseDecoded = json_decode($responseContent);
@@ -36,6 +45,24 @@ class UserTest extends AbstractEndPoint
         self::assertJson($responseContent);
         self::assertNotEmpty($responseDecoded);
     }
+
+//    public function testGetDefaultUser():int
+//    {
+//        $response = $this->getResponseFromRequest(
+//            Request::METHOD_GET,
+//            '/api/users',
+//            '',
+//            ['email'=> 'admin@mail.com'],
+//            false
+//        );
+//        $responseContent = $response->getContent();
+//        $responseDecoded = json_decode($responseContent, true);
+//
+//        self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
+//        self::assertJson($responseContent);
+//        self::assertNotEmpty($responseDecoded);
+//        return $responseDecoded[0]['id'];
+//    }
     private function getPayload(): string
     {
         $faker = Factory::create();
