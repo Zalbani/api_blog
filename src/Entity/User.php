@@ -25,13 +25,13 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
  * @ApiResource(
  *      collectionOperations={
  *          "get"={
- *              "normalization_context"={"groups"={"user_read"}}
+ *              "normalization_context"={"groups"={"userRead"}}
  *          },
  *          "post"
  *      },
  *     itemOperations={
  *          "get"={
- *              "normalization_context"={"groups"={"user_details_read"}}
+ *              "normalization_context"={"groups"={"userDetailsRead"}}
  *          },
  *          "put",
  *          "patch",
@@ -54,7 +54,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
-     * @Groups({"user_read", "user_details_read", "article_details_read"})
+     * @Groups({"userRead", "userDetailsRead", "articleDetailsRead"})
      */
     private string $email;
 
@@ -71,19 +71,19 @@ class User implements UserInterface
 
     /**
      * @ORM\OneToMany(targetEntity=Article::class, mappedBy="author")
-     * @Groups({"user_details_read"})
+     * @Groups({"userDetailsRead"})
      */
     private Collection $articles;
 
     /**
      * @ORM\Column(type="boolean")
-     * @Groups({"user_read", "user_details_read", "article_details_read"})
+     * @Groups({"userRead", "userDetailsRead", "articleDetailsRead"})
      */
     private bool $status;
 
     /**
      * @ORM\Column(type="integer")
-     * @Groups({"user_read", "user_details_read", "article_details_read"})
+     * @Groups({"userRead", "userDetailsRead", "articleDetailsRead"})
      */
     private int $age;
 

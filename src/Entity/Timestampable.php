@@ -9,14 +9,14 @@ trait Timestampable
     /**
      * @var \DateTimeInterface
      * @ORM\Column(type="datetime")
-     * @Groups({"user_read", "user_details_read", "article_read", "article_details_read"})
+     * @Groups({"userRead", "userDetailRead", "articleRead", "articleDetailsRead"})
      */
     private \DateTimeInterface $createdAt;
 
     /**
      * @var \DateTimeInterface
      * @ORM\Column(type="datetime", nullable=true)
-     * @Groups({"user_read", "user_details_read", "article_read", "article_details_read"})
+     * @Groups({"userRead", "userDetailsRead", "articleRead", "articleDetailsRead"})
      */
     private ?\DateTimeInterface $updatedAt;
 

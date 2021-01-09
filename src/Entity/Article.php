@@ -16,13 +16,13 @@ use App\Controller\ArticleUpdatedAt;
  * @ApiResource(
  *      collectionOperations={
  *          "get"={
- *              "normalization_context"={"groups"={"article_read"}}
+ *              "normalization_context"={"groups"={"articleRead"}}
  *          },
  *          "post"
  *      },
  *     itemOperations={
  *          "get"={
- *              "normalization_context"={"groups"={"article_details_read"}}
+ *              "normalization_context"={"groups"={"articleDetailsRead"}}
  *          },
  *          "put",
  *          "patch",
@@ -42,20 +42,20 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups ({"article_read","user_details_read", "article_details_read"})
+     * @Groups ({"articleRead","userDetailsRead", "articleDetailsRead"})
      */
     private string $title;
 
     /**
      * @ORM\Column(type="text")
-     * @Groups ({"article_read","user_details_read","article_details_read"})
+     * @Groups ({"articleRead","userDetailsRead","articleDetailsRead"})
      */
     private string $content;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="articles")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups ({"article_details_read"})
+     * @Groups ({"articleDetailsRead"})
      */
     private UserInterface $author;
 

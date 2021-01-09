@@ -46,23 +46,24 @@ class UserTest extends AbstractEndPoint
         self::assertNotEmpty($responseDecoded);
     }
 
-//    public function testGetDefaultUser():int
-//    {
-//        $response = $this->getResponseFromRequest(
-//            Request::METHOD_GET,
-//            '/api/users',
-//            '',
-//            ['email'=> 'admin@mail.com'],
-//            false
-//        );
-//        $responseContent = $response->getContent();
-//        $responseDecoded = json_decode($responseContent, true);
-//
-//        self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
-//        self::assertJson($responseContent);
-//        self::assertNotEmpty($responseDecoded);
+    public function testGetDefaultUser():void
+    {
+        $response = $this->getResponseFromRequest(
+            Request::METHOD_GET,
+            '/api/users',
+            '',
+            ['email'=> 'admin@mail.com'],
+            false
+        );
+        $responseContent = $response->getContent();
+        $responseDecoded = json_decode($responseContent, true);
+
+        self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
+        self::assertJson($responseContent);
+        self::assertNotEmpty($responseDecoded);
+//        dump($responseDecoded);
 //        return $responseDecoded[0]['id'];
-//    }
+    }
     private function getPayload(): string
     {
         $faker = Factory::create();
